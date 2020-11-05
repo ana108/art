@@ -1,0 +1,62 @@
+#centerPic {
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 90%;
+}
+.header {
+    padding: 5%;
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+.displayBlock {
+    display: flex;
+    flex-direction: row;
+}
+
+.right {
+    text-align: right;
+    width: 100%;
+    padding-top: 1.5%;
+}
+.leftSideOfImage1 {
+    margin-right: -45%;
+}
+.leftSideOfImage2 {
+    margin-right: -35%;
+    padding-top: 5px;
+}
+.leftSideOfImage3 {
+    margin-right: -30%;
+    padding-top: 5px;
+}
+.leftSideOfImage4 {
+    margin-right: -19%;
+    padding-top: 5px;
+}
+
+.middle {
+    margin: 0%;
+    padding: 0px;
+}
+
+.left {
+    text-align: left;
+    width: 100%;
+    padding-top: 1%;
+}
+.rightSideOfImage1 {
+    margin-left: -45%;
+}
+.rightSideOfImage2 {
+    margin-left: -35%;
+    padding-top: 5px;
+}
+.rightSideOfImage3 {
+    margin-left: -30%;
+    padding-top: 5px;
+}
+.rightSideOfImage4 {
+    margin-left: -19%;
+    padding-top: 5px;
+}
