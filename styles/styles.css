@@ -6,7 +6,7 @@
 }
 .header {
     padding: 5%;
-    padding-bottom: 2%;
+    padding-bottom: 0%;
     text-align: center;
 }
 
@@ -66,4 +66,10 @@
 .rightSideOfImage4 {
     margin-left: -19%;
     padding-top: 5px;
+}
+
+.description {
+    text-align: center;
+    margin-left: 35%;
+    max-width: 30%;
 }

@@ -16,8 +16,8 @@ var flipSwitched = true;
 
 function preload() {
     getAudioContext().suspend();
-    mySound = loadSound('./assets/GhostsAndStuff.m4a', () => {
-        console.log('LOADED ANASTASIYA');
+    mySound = loadSound('../assets/GhostsAndStuff.m4a', () => {
+        console.log('Loaded Ghosts and Stuff');
     });
     mySound.playMode('untilDone');
 }

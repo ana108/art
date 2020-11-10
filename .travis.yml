@@ -1,0 +1,22 @@
+sudo: required
+language: generic
+services:
+    - docker
+
+before_install:
+    - docker build -t anastasiya108/art .
+
+script:
+    - docker run -p 80:80 anastasiya108/art
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ca-central-1"
+    app: "docker-react"
+    env: "DockerReact-env"
+    bucket_name: "elasticbeanstalk-ca-central-1-522650954375"
+    bucket_path: "docker-react"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
