@@ -12,16 +12,11 @@ function Line(startDot, endDot, colour) {
 
 let img;
 function preload() {
-  // img = loadImage('assets/red_roses.JPG');
-  loadImage('assets/orange_tree.jpg', (tmpImg => {
+  loadImage('../assets/orange_tree.jpg', (tmpImg => {
       img = tmpImg;
       img.resize(250, 250);
       pixelDensity(1);
       img.loadPixels();
-      console.log('The pixel density is ' + pixelDensity());
-      console.log('Finished loading ' + img.pixels.length);
-      console.log('Image Width ' + img.width);
-      console.log('Image Height ' + img.height);
   }));
 }
 let lineStartX;
@@ -32,9 +27,7 @@ function setup() {
     let cnv = createCanvas(windowWidth - 40, windowHeight - 40);
     centerX = windowWidth/2;
     centerY = windowHeight/2;
-    cnv.mousePressed(canvasPressed);
-    // colorMode(RGB);
-    
+    cnv.mousePressed(canvasPressed);    
     allTopColours = getTop(img);
     randomlyChosenIdx = getRandomInt(0, allTopColours.length-1);
     chosenColor = allTopColours[randomlyChosenIdx];
@@ -74,10 +67,7 @@ function eraseTest() {
     noErase();
 }
 function getTop(theImg) {
-    console.log('Get Top');
-    // 0 - 99*4, every fourth one gets ignored
     let colours = [];
-    console.log('Size of pixels ' + theImg.pixels.length);
     for(var i = 0; i < 250; i++) {
         colours.push(theImg.get(i, 0));
     }
@@ -88,34 +78,19 @@ let lines = [];
 function draw() {
     image(img, centerX, centerY, 250, 250);
     strokeWeight(5);
-    // stroke(color(img.pixels[39996],img.pixels[39997],img.pixels[39998]));
-     // chosenColor
-    //point(lineStartX, centerY-10);
+    point(centerX, centerY);
+    point(centerX+250, centerY);
+    point(centerX, centerY+250);
+    point(centerX+250, centerY+250);
     colorMode(RGB);
     lines.forEach(myLine => {
         stroke(myLine.colour);
         line(myLine.startDot.x, myLine.startDot.y, myLine.endDot.x, myLine.endDot.y);
     })
-    /* stroke(255);
-    strokeWeight(0);
-    let from = color(218, 165, 32);
-    let to = color(72, 61, 139);
-    let arrColours = [];
-    let startPt = 10;
-    for (var i = 0.00; i < 0.999; i=i+0.01) {
-        arrColours.push(lerpColor(from, to, i));
-        fill(lerpColor(from, to, i));
-        rect(startPt, 20, 10, 60);
-        startPt += 10;
-    } */
-    
-
-    // background(51);
 }
 
 function canvasPressed() {
     clear();
-    background('grey');
     randomlyChosenIdx = getRandomInt(0, allTopColours.length-1);
     chosenColor = allTopColours[randomlyChosenIdx];
     lineStartX = centerX + randomlyChosenIdx + 1;
@@ -128,10 +103,22 @@ function canvasPressed() {
         lines.push(lineFromSource);
     } else {
         // add based on previous
+        // get the forbidden list
+        /**
+         *     point(centerX, centerY);
+                point(centerX+250, centerY);
+                point(centerX, centerY+250);
+                point(centerX+250, centerY+250);
+         */
         let tLine = lines[lines.length-1];
         let newLineStart = tLine.endDot;
-        let pickADegree = getRandomInt(190, 350);
+        let pickADegree = getRandomInt(0, 360); // getRandomInt(190, 350);
         let newLineEndPoint = endPoint(pickADegree, 25, newLineStart.x, newLineStart.y);
+        while(newLineEndPoint.x > centerX && newLineEndPoint.x < (centerX+250) && (newLineEndPoint.y > centerY && newLineEndPoint.y < centerY+250)){
+            console.log('Retrying...');
+            pickADegree = getRandomInt(0, 360);
+            newLineEndPoint = endPoint(pickADegree, 25, newLineStart.x, newLineStart.y);
+        }
         let extendLine = new Line(newLineStart, newLineEndPoint, tLine.colour);
         lines.push(extendLine);
     }
