@@ -39,7 +39,7 @@ function getRadian(deg) {
     return radian;
 }
 function createDot() {
-    let randomDegree = randomPoint(0, 360);
+    let randomDegree = getRandomInt(0, 360);
     // formula is:
     let radian = getRadian(randomDegree);
     let x = centerX + ((diameter/2)*Math.cos(radian));
@@ -48,7 +48,7 @@ function createDot() {
 }
 
 function addLine() {
-    let randomColour = randomPoint(0, colours.length-1);
+    let randomColour = getRandomInt(0, colours.length-1);
     strokeWeight(10);
     let startDot = createDot();
     let endDot = createDot();
@@ -56,11 +56,11 @@ function addLine() {
 
     lines.push(myLine);
 }
-function randomPoint(min, max) {
+/*function randomPoint(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+}*/
 
 function flipSwitch() {
     flipSwitched = true;

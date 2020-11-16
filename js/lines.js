@@ -3,6 +3,7 @@
 let centerX;
 let centerY;
 const LINE_LEN = 30;
+const EXCLUSIONS = [360,359, 179, 180, 181, 89, 90, 91, 0, 1, 269, 270, 271];
 function Dot(x, y) {
     this.x = x;
     this.y = y;
@@ -134,14 +135,14 @@ function isInForbidden(dot) {
     }
 }
 function canvasPressed() {
-   let degree = getRandomInt(0, 360);
+   let degree = getRandomInt(0, 360, EXCLUSIONS);
    console.log('Degree ' + degree);
    let newEndPoint = endPoint(degree, LINE_LEN, lines[lines.length-1].endDot.x, lines[lines.length-1].endDot.y);
    let newLine = new Line(lines[lines.length-1].endDot, newEndPoint);
    let i = 0;
    stroke('black');
    while(i < 10 && (isInForbidden(newEndPoint) || intersectsAnyOtherLine(newLine))) {
-        degree = getRandomInt(0, 360);
+        degree = getRandomInt(0, 360, EXCLUSIONS);
         newEndPoint = endPoint(degree, LINE_LEN, lines[lines.length-1].endDot.x, lines[lines.length-1].endDot.y);
         newLine = new Line(lines[lines.length-1].endDot, newEndPoint);
         i++;
@@ -153,9 +154,8 @@ function canvasPressed() {
    lines.push(newLine);
 }
 
-function getRandomInt(min, max) {
+/* function getRandomInt(min, max) {
     // if previous degree is passed in, exclude previous degree and +- 60
-    const exclusions = [360,359, 179, 180, 181, 89, 90, 91, 0, 1, 269, 270, 271];
     min = Math.ceil(min);
     max = Math.floor(max);
     let randomlyChosenInt = parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
@@ -163,7 +163,7 @@ function getRandomInt(min, max) {
         randomlyChosenInt = parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
     }
     return randomlyChosenInt;
-}
+} */
 
 function getRadian(deg) {
     let radian = (deg*Math.PI)/180;

@@ -126,8 +126,8 @@ Dot.prototype.display = function () {
     ellipse(this.x, this.y, this.size);
 }
 
-function getRandomInt(min, max) {
+/*function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+} */
