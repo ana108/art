@@ -4,14 +4,7 @@ var isRunning = false;
 var flipSwitched = true;
 let centerX;
 let centerY;
-function Dot(x, y) {
-    this.x = x;
-    this.y = y;
-}
-function Line(startDot, endDot) {
-    this.startDot = startDot;
-    this.endDot = endDot;
-}
+
 function Arrow(originLine, leftLine, degree, colour) {
     this.originLine = originLine; // origin
     this.leftLine = leftLine;
@@ -70,17 +63,6 @@ function createArrow(length, degree, cx, cy, colour) { // length, degree, cx, cy
     let originLine = new Line(originDot, endDot);
     let derivedLine = new Line(originDot, secondEndDot);
     return new Arrow(originLine, derivedLine, degree, colour);
-}
-
-function getRadian(deg) {
-    let radian = (deg*Math.PI)/180;
-    return radian;
-}
-function endPoint(degree, radius, cx, cy) {
-    let radian = getRadian(degree);
-    let x = cx + (radius*Math.cos(radian));
-    let y = cy + (radius*Math.sin(radian));
-    return new Dot(x, y);
 }
 
 function setup() {
@@ -165,11 +147,6 @@ function canvasPressed() {
     streak = arrowStreak(colourPairs[randomNum].start, colourPairs[randomNum].end);
 }
 
-/*function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}*/
 function keyPressed() {
     if (keyCode === UP_ARROW) {
         sWeight++;

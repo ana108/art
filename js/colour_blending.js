@@ -1,14 +1,4 @@
 let centerX, centerY;
-function Dot(x, y) {
-    this.x = x;
-    this.y = y;
-}
-
-function Line(startDot, endDot, colour) {
-    this.startDot = startDot;
-    this.endDot = endDot;
-    this.colour = colour;
-}
 
 let img;
 function preload() {
@@ -303,17 +293,6 @@ function canvasPressed() {
             lines.push(extendLine);
         }
     }
-}
-
-/* function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}*/
-
-function getRadian(deg) {
-    let radian = (deg*Math.PI)/180;
-    return radian;
 }
 
 function endPoint(degree, radius, cx, cy) {

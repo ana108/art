@@ -8,17 +8,6 @@ let lines = [];
 let colours = ['red', 'orange', 'yellow', 'blue', 'green', 'pink', 'purple'];
 let continueAdding = false;
 let flipSwitched = true;
-function Line(startX, startY, endX, endY, colour) {
-    this.startX = startX;
-    this.startY = startY;
-    this.endX = endX;
-    this.endY = endY;
-    this.colour = colours[colour];
-  }
-function Dot(startX, startY) {
-    this.x = startX;
-    this.y = startY;
-}
 
 function setup() {
     centerX = (windowWidth-40)/2;
@@ -34,10 +23,6 @@ function setup() {
     addLine(startX, startY, endX, endY);
 }
 
-function getRadian(deg) {
-    let radian = (deg*Math.PI)/180;
-    return radian;
-}
 function createDot() {
     let randomDegree = getRandomInt(0, 360);
     // formula is:
@@ -52,15 +37,10 @@ function addLine() {
     strokeWeight(10);
     let startDot = createDot();
     let endDot = createDot();
-    let myLine = new Line(startDot.x, startDot.y, endDot.x, endDot.y, randomColour);
+    let myLine = new Line(startDot, endDot, randomColour);
 
     lines.push(myLine);
 }
-/*function randomPoint(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}*/
 
 function flipSwitch() {
     flipSwitched = true;

@@ -39,19 +39,19 @@ function setup() {
 }
 
 function addSquare() {
-    let randomIdx = randomPoint(0, differentSizes.length-1);
+    let randomIdx = getRandomInt(0, differentSizes.length-1);
     let leftCornerX = getRandomInt(0, windowWidth - 2*differentSizes[randomIdx]);
     let leftCornerY = getRandomInt(0, windowHeight - 2*differentSizes[randomIdx]);
     let a = 0;
     while((xValues.has(leftCornerX) || xValues.has(leftCornerX+differentSizes[randomIdx])) && a < 1000) {
         leftCornerX = getRandomInt(0, windowWidth - 2*differentSizes[randomIdx]);
-        randomIdx = randomPoint(0, differentSizes.length-1);
+        randomIdx = getRandomInt(0, differentSizes.length-1);
         a++;
     }
     a = 0;
     while((yValues.has(leftCornerY) || yValues.has(leftCornerY + differentSizes[randomIdx])) && a < 1000) {
         leftCornerY = getRandomInt(0, windowHeight - 2*differentSizes[randomIdx]);
-        randomIdx = randomPoint(0, differentSizes.length-1);
+        randomIdx = getRandomInt(0, differentSizes.length-1);
         a++;
     }
     if (maxHits === 200) {
@@ -82,7 +82,7 @@ function addSquare() {
         yValues.add(leftCornerY+differentSizes[randomIdx]+i);
     }
 
-    const randomColourIdx = randomPoint(0, colours.length-1);
+    const randomColourIdx = getRandomInt(0, colours.length-1);
     const s = new Sqr(leftCornerX, leftCornerY, differentSizes[randomIdx], colours[randomColourIdx]);
     squares.push(s);
     //addSquare(leftCornerX, leftCornerY, differentSizes[randomIdx]);
@@ -121,16 +121,3 @@ function draw() {
 function canvasPressed() {
     isRunning = !isRunning;
 }
-
-
-function randomPoint(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-/*function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}*/

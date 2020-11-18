@@ -4,10 +4,6 @@ var isRunning = false;
 var flipSwitched = true;
 let centerX;
 let centerY;
-function Dot(x, y) {
-    this.x = x;
-    this.y = y;
-}
 
 /*
 0 starts on the right, and goes clockwise
@@ -17,17 +13,6 @@ function drawLine(length, degree, cx, cy) {
     let secondEndDot = endPoint(degree+90, length, cx, cy);
     line(cx, cy, endDot.x, endDot.y);
     line(cx, cy, secondEndDot.x, secondEndDot.y);
-}
-
-function getRadian(deg) {
-    let radian = (deg*Math.PI)/180;
-    return radian;
-}
-function endPoint(degree, radius, cx, cy) {
-    let radian = getRadian(degree);
-    let x = cx + (radius*Math.cos(radian));
-    let y = cy + (radius*Math.sin(radian));
-    return new Dot(x, y);
 }
 
 function setup() {
@@ -131,9 +116,3 @@ function draw() {
 function canvasPressed() {
     isRunning = !isRunning;
 }
-
-/*function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}*/

@@ -3,16 +3,6 @@
 let centerX;
 let centerY;
 
-function Dot(x, y) {
-    this.x = x;
-    this.y = y;
-}
-
-function Line(startDot, endDot) {
-    this.startDot = startDot;
-    this.endDot = endDot;
-}
-
 function preload() {
 }
 
@@ -29,32 +19,6 @@ function draw() {
         stroke('red');
         line(l.startDot.x, l.startDot.y, l.endDot.x, l.endDot.y);
     });
-}
-
-function intersects(line1, line2) {
-   let a1 = line1.endDot.y-line1.startDot.y;
-   let b1 = line1.startDot.x - line1.endDot.x;
-   // C = Ax1+By1
-   let c1 = (a1*line1.startDot.x)+(b1*line1.startDot.y);
-
-   let a2 = line2.endDot.y-line2.startDot.y;
-   let b2 = line2.startDot.x - line2.endDot.x;
-   let c2 = (a2*line2.startDot.x)+(b2*line2.startDot.y);
-
-   let determinant = a1*b2 - a2*b1
-   
-   if(determinant == 0){
-    //Lines are parallel
-    console.log('Determinant is 0');
-    return false;
-   } else {
-    let x = (b2*c1 - b1*c2)/determinant;
-    let y = (a1*c2 - a2*c1)/determinant;
-    console.log('X received ' + x);
-    console.log('Y received ' + y);
-    return new Dot(x, y);
-   }
-
 }
 
 function canvasPressed() {
