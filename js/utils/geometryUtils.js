@@ -35,6 +35,19 @@ function endPoint(degree, radius, cx, cy) {
     return new Dot(x, y);
 }
 
+function linesIntersect(line1, line2) {
+    let intersectionPoint = intersects(line1, line2);
+    if (!intersectionPoint){
+        return false;
+    } else {
+        if(isIntersectionPointOnBothLines(line1, line2, intersectionPoint)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 function intersects(line1, line2) {
     let a1 = line1.endDot.y-line1.startDot.y;
     let b1 = line1.startDot.x - line1.endDot.x;
