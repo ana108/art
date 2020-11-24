@@ -23,20 +23,12 @@ function setup() {
     addLine(startX, startY, endX, endY);
 }
 
-function createDot() {
-    let randomDegree = getRandomInt(0, 360);
-    // formula is:
-    let radian = getRadian(randomDegree);
-    let x = centerX + ((diameter/2)*Math.cos(radian));
-    let y = centerY + ((diameter/2)*Math.sin(radian));
-    return new Dot(x, y);
-}
 
 function addLine() {
     let randomColour = getRandomInt(0, colours.length-1);
     strokeWeight(10);
-    let startDot = createDot();
-    let endDot = createDot();
+    let startDot = createDot(diameter/2);
+    let endDot = createDot(diameter/2);
     let myLine = new Line(startDot, endDot, randomColour);
 
     lines.push(myLine);

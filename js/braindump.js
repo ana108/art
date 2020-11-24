@@ -3,14 +3,15 @@
 let centerX;
 let centerY;
 
-let colours = ['red', 'white', 'orange', 'black', 'green', 'blue', 'indigo','purple'];
+let colours = ['magenta', 'silver', 'orange', 'turquoise', 'green', 'cerise', 'blue', 'indigo','purple'];
 let colIdx = 0;
 function incrementColour(){
     if (colIdx === 6) {
-        coldIdx = 0;
+        colIdx = 0;
     } else {
         colIdx++;
     }
+    console.log('Col IDX ' + colIdx);
     return colIdx;
 }
 function preload() {
@@ -94,20 +95,23 @@ function setup() {
     centerY = windowHeight/2;
     let cnv = createCanvas(windowWidth - 40, windowHeight - 40);
     cnv.mousePressed(canvasPressed);
-    let initialTree = new Tree(new Node(new Dot(centerX-centerX/2, centerY)), colours[incrementColour()]);
+    let initialTree = new Tree(new Node(new Dot(centerX, centerY)), colours[incrementColour()]);
+    let secondTree = new Tree(new Node(new Dot(centerX-550, centerY+375)), colours[incrementColour()]);
     trees.push(initialTree);
+    trees.push(secondTree);
+    treePairings[trees.length-2] = trees.length-1;
+    treePairings[trees.length-1] = trees.length-2;
 }
 
 function draw() {
-    
+    strokeWeight(3);
     if (trees.length > 1) {
         trees.filter(tree => !tree.concluded).forEach((tree, ind) => {
             let otherTree = trees[treePairings[ind]];
             let degreeRange = directionDegreeMappings[tree.getDirection(otherTree.last)];
             let randomDegreeInRange = getRandomInt(degreeRange[0], degreeRange[1]);
-            let newDot = endPoint(randomDegreeInRange, 50, tree.last.dot.x, tree.last.dot.y);
+            let newDot = endPoint(randomDegreeInRange, 20, tree.last.dot.x, tree.last.dot.y);
             if (!tree.verify(newDot, otherTree)) {
-                console.log('Tree colour ' + tree.colour + ' Other three ' + otherTree.colour);
                 let newTreeColour = lerpColor(color(tree.colour), color(otherTree.colour), 0.5);
                 tree.colour = newTreeColour;
                 otherTree.colour = newTreeColour;

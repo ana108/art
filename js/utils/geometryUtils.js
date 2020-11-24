@@ -114,3 +114,16 @@ function isIntersectionPointOnBothLines(line1, line2, intersectionDot) {
         return false;
     }
 }
+
+function createDot(radius, degree) {
+    let randomDegree = degree;
+    if (!degree) {
+        randomDegree = getRandomInt(0, 360);
+    }
+    
+    // formula is:
+    let radian = getRadian(randomDegree);
+    let x = centerX + (radius*Math.cos(radian));
+    let y = centerY + (radius*Math.sin(radian));
+    return new Dot(x, y);
+}
