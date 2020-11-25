@@ -13,7 +13,7 @@ addons:
   - 161.35.112.238
 branches:
   only:
-  - master
+  - main
 
 
 env:
