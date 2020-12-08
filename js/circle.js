@@ -29,7 +29,7 @@ function addLine() {
     strokeWeight(10);
     let startDot = createDot(diameter/2);
     let endDot = createDot(diameter/2);
-    let myLine = new Line(startDot, endDot, randomColour);
+    let myLine = new Line(startDot, endDot, colours[randomColour]);
 
     lines.push(myLine);
 }
@@ -45,7 +45,7 @@ function draw() {
 
     lines.forEach(myline => {
         stroke(myline.colour);
-        line(myline.startX, myline.startY, myline.endX, myline.endY);
+        line(myline.startDot.x, myline.startDot.y, myline.endDot.x, myline.endDot.y);
     });
     if (continueAdding && flipSwitched) {
         flipSwitched = false;
