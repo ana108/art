@@ -45,7 +45,7 @@ function drawLine(genomeSize, xVal) {
 }
 
 function creativeCorner() {
-    
+
 }
 function drawQuad(radius, xPath){
     //strokeWeight(3);
@@ -82,25 +82,15 @@ function draw() {
         } else {
             height = height*1.13;
         }
-        /*if (height > 10) {
-            height--;
-        } */
         if (height < 0) {
             height = 0;
         }
     }  
 
-    let k = 150;
+    /*let k = 150;
     drawQuad(k, centerX-600);
     drawQuad(k, centerX);
-    drawQuad(k, centerX+600);
-    //drawQuad(k);
-    //drawQuad(k);
-    /*for(let z = 0; z < 50; z++) {
-        //drawQuad(k);
-        //drawCrissCrossLine(k);
-        k += 50;
-    }*/
+    drawQuad(k, centerX+600);*/
       
 }
 
