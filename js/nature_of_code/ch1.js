@@ -10,6 +10,7 @@ function Mover(m, x, y) {
     this.topspeed = 10;
     this.mass = m;
 }
+let noiser = 0;
 Mover.prototype.update = function() {
     /*let mouseVector = createVector(mouseX, mouseY);
     let direction = p5.Vector.sub(mouseVector, mover.location);
@@ -28,11 +29,11 @@ Mover.prototype.update = function() {
 Mover.prototype.applyFroce = function(force) {
     let f = p5.Vector.div(force, this.mass);
     this.acceleration.add(f);
+
 }
 
 Mover.prototype.display = function() {
     stroke(0);
-    fill(175);
     fill(175);
     ellipse(this.location.x, this.location.y, this.mass*16, this.mass*16);
 }
