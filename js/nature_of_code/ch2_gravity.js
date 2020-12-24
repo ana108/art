@@ -3,31 +3,28 @@
 let centerX;
 let centerY;
 let movers = [];
-let mover;
-let liquid;
 let attractor;
-function Attractor() {
+const G = 1.1;
+function Attractor(x, y) {
     this.mass = 20;
-    this.location = createVector(windowWidth/2, windowHeight/2);
+    //this.location = createVector(windowWidth/2, windowHeight/2);
+    this.location = createVector(x, y);
 }
 Attractor.prototype.display = function() {
     stroke(0);
     fill(175, 200);
     ellipse(this.location.x, this.location.y, this.mass*2, this.mass*2);
 }
+Attractor.prototype.attract = function(mover) {
+    let force = p5.Vector.sub(this.location, mover.location);
+    let distance = force.mag();
+    distance = constrain(distance, 5.0, 25.0);
+    force.normalize();
+    let strength = (G*this.mass*mover.mass)/(distance*distance);
+    force.mult(strength);
+    return force;
+}
 
-function Liquid(x, y, w, h, c) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.c = c;
-}
-Liquid.prototype.display = function() {
-    noStroke();
-    fill(175);
-    rect(this.x, this.y, this.w, this.h);
-}
 function Mover(mass, x, y) {
     this.location = createVector(x, y);
     this.velocity = createVector(0, 0);
@@ -41,6 +38,7 @@ Mover.prototype.applyForce = function(force) {
 
 Mover.prototype.display = function() {
     stroke(0);
+    noFill();
     ellipse(this.location.x, this.location.y, this.mass*16, this.mass*16);
 }
 Mover.prototype.update = function() {
@@ -58,7 +56,7 @@ Mover.prototype.checkEdges = function() {
     } 
     if(this.location.y > windowHeight-50) {
         this.velocity.y *= -1;
-        this.location.y = height;
+        this.location.y = windowHeight-50;
     } else if (this.location.y < 0) {
         this.velocity.y *= -1;
         this.location.y = 0;
@@ -86,6 +84,16 @@ Mover.prototype.drag = function(liq) {
     this.applyForce(drag);
 }
 
+Mover.prototype.attract = function(mover) {
+    let force = p5.Vector.sub(this.location, mover.location);
+    let distance = force.mag();
+    distance = constrain(distance, 5.0, 25.0);
+    force.normalize();
+    let strength = (G*this.mass*mover.mass)/(distance*distance);
+    force.mult(strength);
+    return force;
+}
+
 function setup() {
     background(255);
     noFill();
@@ -93,30 +101,30 @@ function setup() {
     centerY = windowHeight/2;
     let cnv = createCanvas(windowWidth - 40, windowHeight - 40);
     cnv.mousePressed(canvasPressed);
-    for(let i = 0; i < 5; i++) {
-        movers[i] = new Mover(random(0.1, 5), 40+(i*200), 40); 
-
+    for(let i = 0; i < 100; i++) {
+        movers[i] = new Mover(random(0.1, 2), random(windowWidth), random(windowHeight));
     }
-    liquid = new Liquid(0, windowHeight/2, windowWidth, windowHeight/2, 0.1);
     attractor = new Attractor();
 }
 
 function draw() {
     clear();
+    attractor = new Attractor(mouseX, mouseY);
     attractor.display();
-    liquid.display();
-    let s = 0;
     movers.forEach(mover => {
-        mover.checkEdges();
-        if(mover.isInside(liquid)) {
-            mover.drag(liquid);
+        for(let i = 0; i < 100; i++) {
+            if(!movers[i].location.equals(mover.location)) {
+                let force = movers[i].attract(mover);
+                force.mult(-1);
+                mover.applyForce(force);
+            }
         }
-        let m = 0.1*mover.mass;
-        let gravity = createVector(0, m);
-        mover.applyForce(gravity); 
+        let force = attractor.attract(mover);
+        force.mult(2);
+        mover.applyForce(force);
         mover.update();
         mover.display();
-        s++;
+        mover.checkEdges();
     });
 }
 function canvasPressed() {
