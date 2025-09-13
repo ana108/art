@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../../../../learning/redis-image"
+		},
+		{
+			"path": "../../../../learning/visits"
+		},
+		{
+			"path": "../../../../learning/frontend"
+		},
+		{
+			"path": "../../../../learning/complex"
+		},
+		{
+			"path": "../../../../learning/simplek8s"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../cplib"
+		}
+	],
+	"settings": {}
+}

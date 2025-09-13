@@ -4,6 +4,7 @@
     max-height: 90%;
     position: sticky;
 }
+
 .header {
     padding: 5%;
     padding-bottom: 0%;
@@ -21,17 +22,21 @@
     padding-top: 1.5%;
     z-index: 1000;
 }
+
 .leftSideOfImage1 {
     margin-right: -45%;
 }
+
 .leftSideOfImage2 {
     margin-right: -35%;
     padding-top: 5px;
 }
+
 .leftSideOfImage3 {
     margin-right: -30%;
     padding-top: 5px;
 }
+
 .leftSideOfImage4 {
     margin-right: -19%;
     padding-top: 5px;
@@ -39,6 +44,16 @@
 
 .leftSideOfImage5 {
     margin-right: -10%;
+    padding-top: 5px;
+}
+
+.leftSideOfImage6 {
+    margin-right: -5%;
+    padding-top: 5px;
+}
+
+.leftSideOfImage7 {
+    margin-right: -0%;
     padding-top: 5px;
 }
 
@@ -52,19 +67,38 @@
     width: 100%;
     padding-top: 1%;
 }
+
 .rightSideOfImage1 {
     margin-left: -45%;
 }
+
 .rightSideOfImage2 {
     margin-left: -35%;
     padding-top: 5px;
 }
+
 .rightSideOfImage3 {
-    margin-left: -30%;
+    margin-left: -26%;
     padding-top: 5px;
 }
+
 .rightSideOfImage4 {
     margin-left: -19%;
+    padding-top: 5px;
+}
+
+.rightSideOfImage5 {
+    margin-left: -10%;
+    padding-top: 5px;
+}
+
+.rightSideOfImage6 {
+    margin-left: -5%;
+    padding-top: 5px;
+}
+
+.rightSideOfImage7 {
+    margin-left: 0%;
     padding-top: 5px;
 }
 
