@@ -1,4 +1,5 @@
 # Logs
+ssh_keys
 logs
 *.log
 npm-debug.log*
