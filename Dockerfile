@@ -3,5 +3,5 @@ WORKDIR '/app'
 COPY . .
 
 FROM nginx
-EXPOSE 9000
+EXPOSE 80
 COPY --from=0 /app /usr/share/nginx/html
