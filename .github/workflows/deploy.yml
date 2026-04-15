@@ -48,4 +48,5 @@ jobs:
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: 22
           script: |
-            docker run -d -p 9000:80 sustainabletext/art:latest
+            docker rm -f art:latest
+            docker run --name art:latest --rm -d -p 9000:80 sustainabletext/art:latest
